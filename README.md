@@ -1,7 +1,7 @@
 # dm2skin
 A Python script for Maya that allows you to convert the results of a delta-mush deformer to standard skin weights.
  
-You provide the tool with a skinned mesh, a version of the mesh with the delta-mush deformer applied and a set of keyframed poses. For each vertex the script does some mathematical optimization in order to figure out the influence weights that will minimize the the total distance (summed over the poses provided) between the skinned vertex and its mushed partner. Effectively this makes the skinned model as "similar" as possible to the delta-mushed version.
+You provide the tool with a skinned mesh (with one influence per vertex), a version of the mesh with the delta-mush deformer applied and a set of keyframed poses. For each vertex the script does some mathematical optimization in order to figure out the influence weights that will minimize the the total distance (summed over the poses provided) between the skinned vertex and its mushed partner. Effectively this makes the skinned model as "similar" as possible to the delta-mushed version.
 
 It uses NumPy / SciPy to perform the minimization and should work on Maya 2015 / 2016.
 
