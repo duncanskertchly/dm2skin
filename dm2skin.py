@@ -331,7 +331,6 @@ def dm2skin_doMushOptimization(mesh, mushMesh = None, maxInfluences = 4, progres
     invMatrices = dm2skin_getMatrices(allInfluences, matrixString = '.worldInverseMatrix')
     transMatrices = dm2skin_getMatricesOverRange(allInfluences, matrixString = '.worldMatrix', startFrame = int(minTime) + 1, endFrame = int(maxTime))
 
-
     bindVertList = dm2skin_getVertexLocationList(mesh, frame = int(minTime))
     mushedVertList = dm2skin_getVertexPositionsOverRange(mushMesh, startFrame = int(minTime) + 1, endFrame = int(maxTime))
 
@@ -341,6 +340,9 @@ def dm2skin_doMushOptimization(mesh, mushMesh = None, maxInfluences = 4, progres
         progressBar.setMaximum(numVerts)
 
     setWeightList = []
+
+    #reset to the first frame again before we start
+    cmds.currentTime(minTime)
     for i in range(numVerts):
 
         if progressBar:
