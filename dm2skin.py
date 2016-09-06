@@ -127,7 +127,7 @@ class dm2skin_UI(QtGui.QDialog):
             return
         cmds.currentTime(cmds.playbackOptions(q = True, min = True))
         dup = cmds.duplicate(mesh, inputConnections =True, n = mesh +'_Mush')
-        cmds.deltaMush(dup, smoothingIterations = 10, smoothingStep = 0.5, pinBorderVertices = True, envelope = 1)
+        cmds.deltaMush(dup, smoothingIterations = 20, smoothingStep = 0.5, pinBorderVertices = True, envelope = 1)
 
     def deleteMush(self):
         mesh = self.sourceField.text()
@@ -327,11 +327,11 @@ def dm2skin_doMushOptimization(mesh, mushMesh = None, maxInfluences = 4, progres
     numVerts = cmds.polyEvaluate(mesh, v = True)
 
     invMatrices = dm2skin_getMatrices(allInfluences, matrixString = '.worldInverseMatrix')
-    transMatrices = dm2skin_getMatricesOverRange(allInfluences, matrixString = '.worldMatrix', startFrame = int(minTime), endFrame = int(maxTime))
+    transMatrices = dm2skin_getMatricesOverRange(allInfluences, matrixString = '.worldMatrix', startFrame = int(minTime) + 1, endFrame = int(maxTime))
 
 
-    bindVertList = dm2skin_getVertexLocationList(mesh)
-    mushedVertList = dm2skin_getVertexPositionsOverRange(mushMesh, startFrame = int(minTime), endFrame = int(maxTime))
+    bindVertList = dm2skin_getVertexLocationList(mesh, frame = int(minTime))
+    mushedVertList = dm2skin_getVertexPositionsOverRange(mushMesh, startFrame = int(minTime) + 1, endFrame = int(maxTime))
 
     #if there is a progress bar provided, set the maximum value to
     #the total number of verts
