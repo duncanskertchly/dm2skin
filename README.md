@@ -63,3 +63,12 @@ A GUI should appear that looks like this.
 11. Once the process finishes you can have a look at the result. If you're not happy just hit undo and the weights will go back to your previous rigid weights.
 
 12. If you are happy hit **Delete Mush** and do any tweaks to the weights that you think are necessary.
+
+# Random Notes
+
+* I have found that the best way to improve the results of the skin transfer is to make adjustments to the keyframed poses you provide. For instance you find that the shoulder / upper arm vertices don't deform nicely when you twist the upper arm go back and put some twist in to the upper arms on a few of your poses and re-run the transfer. Remember it can only optimize the weights given the information you provide.
+
+* On each pose try and move or rotate every bone a bit. For instance if you've got finger bones that you leave stationary in all your poses the optimization algorithm may well conclude that it can just bind those vertices to the wrist joint. It doesn't know any better unless you tell it. If you put lots of rotation on them it won't be able to make a conclusion like that.
+ 
+* I've found that the optimization process will sometimes put a very small amount of weight on joints that don't make too much sense. For instance you may find that the neck very slightly influences vertices around the chest area and that type of thing. It's just an artefact of the numerical optimization. In this instance I'd usually just use Mayas __Prune Small Weights__ tool until that influence disappears.
+
