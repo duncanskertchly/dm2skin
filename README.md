@@ -13,7 +13,7 @@ Clone the repository using the following command in Git Bash.
 git clone https://github.com/duncanskertchly/dm2skin.git
 ~~~
 
-From the **dm2skin\\dependencies** directory extract the two 7-Zip files to Mayas Python libraries directory. On Windows this is usually.
+From the **dependencies** directory extract the two 7-Zip files to Mayas Python libraries directory. On Windows this is usually.
 
 > C:\\Program Files\\Autodesk\\Maya2016\\Python\\Lib\\site-packages
 
