@@ -5,7 +5,7 @@
 
 1. Skin your mesh to its skeleton using skinning options similar to the ones below. It's important that initially you use only one influence per vertex.
 
-	![](./images/skin_options.png)
+	![](./images/skin_options.PNG)
 
 2. Paint your skin weights so that each part of your mesh is deformed reasonably (despite only having one weight per vert). Obviously it'll look pretty terrible, but if you make it as tidy as you can the delta mushed version will look better later.
 3. Open the dm2skin UI using the following code.
@@ -16,7 +16,7 @@
 	~~~
 A GUI should appear that looks like this.
 
-	![](./images/gui.png)
+	![](./images/gui.PNG)
 
 4. Select your newly skinned mesh and hit the __<<__ button. Your mesh will be added to the field to the left.
 
