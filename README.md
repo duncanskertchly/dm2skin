@@ -7,7 +7,7 @@ It uses NumPy / SciPy to perform the minimization and should work on Maya 2015 /
 
 # Note
 
-The script relies on Numpy / Scipy, but you have to use a specific version that is built to work with Mayas Python interpreter. This is included. I got these builds online from a guy who I forget the name of. I'll update this with his name at some point.
+The script relies on Numpy / Scipy, but you have to use a specific version that is built to work with Maya's Python interpreter. This is included. I got these builds online from a guy who I forget the name of. I'll update this with his name and a link at some point.
  
 # Installation
 
@@ -74,7 +74,7 @@ A GUI should appear that looks like this.
 
 * On each pose try and move or rotate every bone. For instance if you've got finger bones that you leave stationary in all your poses the optimization algorithm may well conclude that it can just bind those vertices to the wrist joint. It doesn't know any better unless you tell it. Put lots of rotation on them it won't be able to make a conclusion like that.
  
-* I've noticed that the optimization process will sometimes put a very small amount of weight on joints that don't make too much sense. For instance you may find that the neck very slightly influences vertices around the chest area and that type of thing. It's just an artefact of the numerical optimization. In this instance I'd usually just use Mayas __Prune Small Weights__ tool until that influence disappears.
+* I've noticed that the optimization process will sometimes put a very small amount of weight on joints that don't make too much sense. For instance you may find that the neck very slightly influences vertices around the chest area and that type of thing. It's just an artefact of the numerical optimization. In this instance I'd usually just use Maya's __Prune Small Weights__ tool until that influence disappears.
 
 * The more influences you allow the better the result will be. Lower influence counts may require a bit more tweaking, but will usually be a very good start.
 
