@@ -20,6 +20,7 @@ From the **dependencies** directory extract the two 7-Zip files to Mayas Python 
 So ultimately you should have these new directories.
 
 > C:\\Program Files\\Autodesk\\Maya2016\\Python\\Lib\\site-packages\\numpy
+
 > C:\\Program Files\\Autodesk\\Maya2016\\Python\\Lib\\site-packages\\scipy
 
 From the root folder copy **dm2skin.py** to your Maya scripts folder. Usually this.
