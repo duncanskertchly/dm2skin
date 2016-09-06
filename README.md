@@ -72,7 +72,7 @@ A GUI should appear that looks like this.
 
 * I have found that the best way to improve the results of the skin transfer is to make adjustments to the keyframed poses you provide. Not the number (4 / 5 is usually fine), but the poses themselves. For instance if you find that the shoulder / upper arm vertices on your humanoid character don't deform nicely when you twist the upper arm, undo the transfer and go and put some twist in to the upper arms on a few of your poses and re-run the transfer. Remember it can only optimize the weights from the information you provide.
 
-* On each pose try and move or rotate every bone. For instance if you've got finger bones that you leave stationary in all your poses the optimization algorithm may well conclude that it can just bind those vertices to the wrist joint. It doesn't know any better unless you tell it. Put lots of rotation on them it won't be able to make a conclusion like that.
+* On each pose try and move or rotate every bone. For instance if you've got finger bones that you leave stationary in all your poses the optimization algorithm may well conclude that it can just bind those vertices to the wrist joint. It doesn't know any better unless you tell it. Put lots of rotation on them to ensure the algorithm doesn't reach those kind of strange conclusions.
  
 * I've noticed that the optimization process will sometimes put a very small amount of weight on joints that don't make too much sense. For instance you may find that the neck very slightly influences vertices around the chest area and that type of thing. It's just an artefact of the numerical optimization. In this instance I'd usually just use Maya's __Prune Small Weights__ tool until that influence disappears.
 
