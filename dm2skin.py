@@ -9,8 +9,6 @@ from PySide import QtGui
 from PySide import QtCore
 from shiboken import wrapInstance
 
-dm2skin_mayaVersionNumber = int(cmds.about(v = True).split("-")[0].split(" ")[0])
-
 class dm2skin_UI(QtGui.QDialog):
     """Builds the GUI"""
     def __init__(self, parent = wrapInstance(long(apiUI.MQtUtil.mainWindow()), QtGui.QWidget)):
@@ -206,11 +204,14 @@ def dm2skin_getLargestInfluenceOnVert(vertex, skinCluster = None):
     return vertInfs[ vertVals.index(max(vertVals)) ]
 
 
-def dm2skin_getNeighbouringJoints(joint, cluster = None, influences = 2):
+def dm2skin_getNeighbouringJoints(joint, cluster = None, influences = 3):
+    """This gets a list of nearby joints in the skin cluster to joint up to
+    the number of influences. These will be the ones we use in our minimization
+    later"""
 
     if not cmds.objExists(joint):
         return False
-    if influences < 2:
+    if influences < 3:
         return False
     if not cluster:
         return False
@@ -221,10 +222,13 @@ def dm2skin_getNeighbouringJoints(joint, cluster = None, influences = 2):
     parentJoint = cmds.listRelatives(joint, parent = True)
     childJoint = cmds.listRelatives(joint, children = True)
 
+    #add the main joint
     resultList = [joint]
+    #i've found it works best to always include the parent
     if parentJoint:
         resultList.insert(0, parentJoint[0])
 
+    #for the rest of the available influences get a list of nearby joints in space
     measureList = []
     for measureJnt in clusterJoints:
         if measureJnt not in resultList:
@@ -233,32 +237,35 @@ def dm2skin_getNeighbouringJoints(joint, cluster = None, influences = 2):
             dist = math.sqrt( reduce(lambda x, y: x + y, [math.pow(jntPos2[i] - jntPos1[i], 2) for i in range(len(jntPos1))]) )
             measureList.append( (measureJnt, dist) )
 
+    #sort the list in ascending order so we get the closest joints first
     measureList.sort(key = lambda dist: dist[1])
     ascendingList = [entry[0] for entry in measureList[0:influences - 2]]
     return resultList + ascendingList
 
+#old version
+"""
+def dm2skin_getNeighbouringJoints(joint, cluster = None, influences = 1):
 
-# def dm2skin_getNeighbouringJoints(joint, cluster = None, influences = 1):
+    if not cmds.objExists(joint):
+        return False
+    if influences < 1:
+        return [joint]
+    if not cluster:
+        return False
 
-#     if not cmds.objExists(joint):
-#         return False
-#     if influences < 1:
-#         return [joint]
-#     if not cluster:
-#         return False
+    clusterJoints = cmds.skinCluster(cluster, q = True, inf = True)
+    jntPos1 = cmds.xform(joint, q = True, ws = True, t =True)
 
-#     clusterJoints = cmds.skinCluster(cluster, q = True, inf = True)
-#     jntPos1 = cmds.xform(joint, q = True, ws = True, t =True)
+    resultList = []
+    for measureJnt in clusterJoints:
+        jntPos2 = cmds.xform(measureJnt, q = True, ws  = True, t = True)
+        #this just gets the length of the vector between the two joints
+        dist = reduce(lambda x, y: x + y, [math.pow(jntPos2[i] - jntPos1[i], 2) for i in range(len(jntPos1))])
+        resultList.append( (measureJnt, dist) )
 
-#     resultList = []
-#     for measureJnt in clusterJoints:
-#         jntPos2 = cmds.xform(measureJnt, q = True, ws  = True, t = True)
-#         #this just gets the length of the vector between the two joints
-#         dist = reduce(lambda x, y: x + y, [math.pow(jntPos2[i] - jntPos1[i], 2) for i in range(len(jntPos1))])
-#         resultList.append( (measureJnt, dist) )
-
-#     resultList.sort(key = lambda dist: dist[1])
-#     return [entry[0] for entry in resultList[0:influences]]
+    resultList.sort(key = lambda dist: dist[1])
+    return [entry[0] for entry in resultList[0:influences]]
+"""
 
 def dm2skin_computeSourceMushDistance(weights, sourceMesh, targetMesh, index, bindVerts, mushVerts, bindInvMatrices, transMatrices, joints):
     """Computes the distance between a vertex in the source mesh and target mesh. Ultimately this
@@ -339,7 +346,6 @@ def dm2skin_doMushOptimization(mesh, mushMesh = None, maxInfluences = 4, progres
 
         largestInf = dm2skin_getLargestInfluenceOnVert(mesh +'.vtx[' +str(i) +']', skinCluster)
         largestInfIndex = allInfluences.index(largestInf)
-        # vertInfluences = dm2skin_getNeighbouringJoints(largestInf, cluster = skinCluster, influences = maxInfluences)
         vertInfluences = dm2skin_getNeighbouringJoints(largestInf, cluster = skinCluster, influences = maxInfluences)
 
         properInfIndices = [ allInfluences.index(inf) for inf in vertInfluences ]
