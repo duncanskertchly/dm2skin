@@ -70,7 +70,7 @@ A GUI should appear that looks like this.
 
 # Random Notes
 
-* I have found that the best way to improve the results of the skin transfer is to make adjustments to the keyframed poses you provide. Not the number, 4 / 5 is usually fine, but the poses themselves. For instance if you find that the shoulder / upper arm vertices on your humanoid character don't deform nicely when you twist the upper arm, undo the transfer and go and put some twist in to the upper arms on a few of your poses and re-run the transfer. Remember it can only optimize the weights given the information you provide.
+* I have found that the best way to improve the results of the skin transfer is to make adjustments to the keyframed poses you provide. Not the number, 4 / 5 is usually fine, but the poses themselves. For instance if you find that the shoulder / upper arm vertices on your humanoid character don't deform nicely when you twist the upper arm, undo the transfer and go and put some twist in to the upper arms on a few of your poses and re-run the transfer. Remember it can only optimize the weights from the information you provide.
 
 * On each pose try and move or rotate every bone. For instance if you've got finger bones that you leave stationary in all your poses the optimization algorithm may well conclude that it can just bind those vertices to the wrist joint. It doesn't know any better unless you tell it. Put lots of rotation on them it won't be able to make a conclusion like that.
  
