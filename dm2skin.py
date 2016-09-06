@@ -222,11 +222,13 @@ def dm2skin_getNeighbouringJoints(joint, cluster = None, influences = 3):
     parentJoint = cmds.listRelatives(joint, parent = True)
     childJoint = cmds.listRelatives(joint, children = True)
 
+    subtract = 1
     #add the main joint
     resultList = [joint]
     #i've found it works best to always include the parent
-    if parentJoint:
+    if parentJoint and parentJoint in clusterJoints:
         resultList.insert(0, parentJoint[0])
+        subtract = 2
 
     #for the rest of the available influences get a list of nearby joints in space
     measureList = []
@@ -239,7 +241,7 @@ def dm2skin_getNeighbouringJoints(joint, cluster = None, influences = 3):
 
     #sort the list in ascending order so we get the closest joints first
     measureList.sort(key = lambda dist: dist[1])
-    ascendingList = [entry[0] for entry in measureList[0:influences - 2]]
+    ascendingList = [entry[0] for entry in measureList[0:influences - subtract]]
     return resultList + ascendingList
 
 #old version
