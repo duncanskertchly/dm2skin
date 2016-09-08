@@ -5,6 +5,8 @@ You provide the tool with a skinned mesh (with one influence per vertex), a vers
 
 It uses NumPy + SciPy to perform the minimization and should work on Maya 2016. Older Maya versions don't have the Delta-Mush deformer.
 
+I've put a little demo video on Vimeo [here](https://vimeo.com/181910645).
+
 # Note
 
 The script relies on Numpy and Scipy, but you have to use a specific version that is built to work with Maya's Python interpreter. This is included in the **dependencies** directory. I got these builds online from a guy who I forget the name of. I'll update this with his name and a link at some point.
