@@ -82,5 +82,5 @@ A GUI should appear that looks like this.
 
 # Example Files
 
-There two Maya files in the **examples** folder which give you an idea of the before / after results. The **test_done.ma** file is a warts and all result of the tool, I've not done any tweaking to the skinning. Looking at the **test_start.ma** is a quite useful illustration of some of the points I've made in the previous section.
+There two Maya files in the **examples** folder which give you an idea of the before and after results. The **test_done.ma** file is a warts and all result of the tool, I've not done any tweaking to the skinning. Looking at the **test_start.ma** is a quite useful illustration of some of the points I've made in the previous section.
 
