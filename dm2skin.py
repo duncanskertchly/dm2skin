@@ -204,7 +204,7 @@ def dm2skin_getLargestInfluenceOnVert(vertex, skinCluster = None):
     return vertInfs[ vertVals.index(max(vertVals)) ]
 
 
-def dm2skin_getNeighbouringJoints(joint, cluster = None, influences = 3):
+def dm2skin_getNeighbouringJoints(joint, vertexString = None, cluster = None, influences = 3):
     """This gets a list of nearby joints in the skin cluster to joint up to
     the number of influences. These will be the ones we use in our minimization
     later"""
@@ -217,7 +217,8 @@ def dm2skin_getNeighbouringJoints(joint, cluster = None, influences = 3):
         return False
 
     clusterJoints = cmds.skinCluster(cluster, q = True, inf = True)
-    jntPos1 = cmds.xform(joint, q = True, ws = True, t =True)
+
+    pos1 = cmds.xform(vertexString, q = True, ws = True, t =True)
 
     parentJoint = cmds.listRelatives(joint, parent = True)
     childJoint = cmds.listRelatives(joint, children = True)
@@ -236,7 +237,7 @@ def dm2skin_getNeighbouringJoints(joint, cluster = None, influences = 3):
         if measureJnt not in resultList:
             jntPos2 = cmds.xform(measureJnt, q = True, ws  = True, t = True)
             #this just gets the length of the vector between the two joints
-            dist = math.sqrt( reduce(lambda x, y: x + y, [math.pow(jntPos2[i] - jntPos1[i], 2) for i in range(len(jntPos1))]) )
+            dist = math.sqrt( reduce(lambda x, y: x + y, [math.pow(jntPos2[i] - pos1[i], 2) for i in range(len(pos1))]) )
             measureList.append( (measureJnt, dist) )
 
     #sort the list in ascending order so we get the closest joints first
@@ -350,7 +351,7 @@ def dm2skin_doMushOptimization(mesh, mushMesh = None, maxInfluences = 4, progres
 
         largestInf = dm2skin_getLargestInfluenceOnVert(mesh +'.vtx[' +str(i) +']', skinCluster)
         largestInfIndex = allInfluences.index(largestInf)
-        vertInfluences = dm2skin_getNeighbouringJoints(largestInf, cluster = skinCluster, influences = maxInfluences)
+        vertInfluences = dm2skin_getNeighbouringJoints(largestInf, vertexString = mesh +'.vtx[' +str(i) +']', cluster = skinCluster, influences = maxInfluences)
 
         properInfIndices = [ allInfluences.index(inf) for inf in vertInfluences ]
           
@@ -366,10 +367,11 @@ def dm2skin_doMushOptimization(mesh, mushMesh = None, maxInfluences = 4, progres
         startValList = []
         for j in range(len(vertInfluences)):
             boundsList.append( (0,1) )
-            if j == largestInfIndex:
-                startValList.append(1.0)
-            else:
-                startValList.append(0.0)
+            startValList.append(1.0 / len(vertInfluences))
+            # if j == largestInfIndex:
+            #     startValList.append(1.0)
+            # else:
+            #     startValList.append(0.0)
 
         cons = ( {'type':'eq', 'fun': dm2skin_normalizeWeightsConstraint})
         result = minimize(dm2skin_computeSourceMushDistance, startValList, method = 'SLSQP', args = (mushMesh, mesh, i, bindVertList, mushedVertList, currentInvMatrices, currentTransMatrices, vertInfluences), constraints = cons, bounds = boundsList)
