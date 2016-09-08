@@ -17,7 +17,7 @@ Clone the repository using the following command in Git Bash.
 git clone https://github.com/duncanskertchly/dm2skin.git
 ~~~
 
-Alternatively there is a little green button on the projects front page that will let you download the project as a zipped file.
+Alternatively there is a little green button on the projects front page that will let you download it as a zipped file.
 
 From the **dependencies** directory extract the two 7-Zip files to Mayas Python libraries directory. On Windows this is usually.
 
