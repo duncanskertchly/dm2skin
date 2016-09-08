@@ -52,7 +52,7 @@ A GUI should appear that looks like this.
 
 	![](./images/gui.png)
 
-4. Select your newly skinned mesh and hit the **<<** button. Your mesh will be added to the field to the left.
+4. Select your newly skinned mesh and hit the **<<** button. Your mesh will be added to the **Source Mesh** field on the left.
 
 5. Hit **Create Mush**. A new version of your mesh should be created called **\<YourMesh\>\_Mush**.
 
