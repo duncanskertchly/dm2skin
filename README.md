@@ -70,7 +70,7 @@ A GUI should appear that looks like this.
 
 12. If you are happy hit **Delete Mush** and do any tweaks to the weights that you think are necessary.
 
-# Random Notes
+# Getting Good Results
 
 * I have found that the best way to improve the results of the skin transfer is to make adjustments to the keyframed poses you provide. Not the number (4 / 5 is usually fine), but the poses themselves. For instance if you find that the shoulder / upper arm vertices on your humanoid character don't deform nicely when you twist the upper arm, undo the transfer and go and put some twist in to the upper arms on a few of your poses and re-run the transfer. Remember it can only optimize the weights from the information you provide.
 
@@ -78,5 +78,9 @@ A GUI should appear that looks like this.
  
 * I've noticed that the optimization process will sometimes put a very small amount of weight on joints that don't make too much sense. For instance you may find that the neck very slightly influences vertices around the chest area and that type of thing. It's just an artefact of the numerical optimization. In this instance I'd usually just use Maya's __Prune Small Weights__ tool until that influence disappears.
 
-* The more influences you allow the better the result will be. Lower influence counts may require a bit more tweaking, but will usually be a very good start.
+* The more influences you allow the better the result will be. Lower influence counts may require a bit more tweaking, but will usually be a very good starting point for your skinning.
+
+# Example Files
+
+There two Maya files in the **examples** folder which give you an idea of the before / after results. The **test_done.ma** file is a warts and all result of the tool, I've not done any tweaking to the skinning. Looking at the **test_start.ma** is a quite useful illustration of some of the points I've made in the previous section.
 
