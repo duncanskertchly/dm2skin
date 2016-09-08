@@ -3,11 +3,11 @@ A Python script for Maya that allows you to convert the results of a delta-mush 
  
 You provide the tool with a skinned mesh (with one influence per vertex), a version of the mesh with the delta-mush deformer applied and a set of keyframed poses. For each vertex the script does some mathematical optimization in order to figure out the influence weights that will minimize the the total distance (summed over the poses provided) between the skinned vertex and its mushed partner. Effectively this makes the skinned model as "similar" as possible to the delta-mushed version.
 
-It uses NumPy / SciPy to perform the minimization and should work on Maya 2015 / 2016.
+It uses NumPy + SciPy to perform the minimization and should work on Maya 2016. Older Maya versions don't have the Delta-Mush deformer.
 
 # Note
 
-The script relies on Numpy / Scipy, but you have to use a specific version that is built to work with Maya's Python interpreter. This is included. I got these builds online from a guy who I forget the name of. I'll update this with his name and a link at some point.
+The script relies on Numpy and Scipy, but you have to use a specific version that is built to work with Maya's Python interpreter. This is included in the **dependencies** directory. I got these builds online from a guy who I forget the name of. I'll update this with his name and a link at some point.
  
 # Installation
 
