@@ -15,9 +15,9 @@ The script relies on Numpy and Scipy, but you have to use a specific version tha
 
 Clone the repository using the following command in Git Bash.
 
-~~~
+```bash
 git clone https://github.com/duncanskertchly/dm2skin.git
-~~~
+```
 
 Alternatively there is a little green button on the projects front page that will let you download it as a zipped file.
 
@@ -44,13 +44,15 @@ Re-boot Maya and test the install using the little bit of code in step 3 of the 
 	![](./images/skin_options.png)
 
 2. Paint your skin weights so that each part of your mesh is deformed reasonably (despite only having one weight per vert). Obviously it'll look pretty terrible, but if you make it as tidy as you can the delta mushed version will look better later.
+
 3. Open the dm2skin UI using the following code.
 
-	~~~
+	```python
 	import dm2skin
 	dm2skin.dm2skin()
-	~~~
-A GUI should appear that looks like this.
+	```
+
+	A GUI should appear that looks like this.
 
 	![](./images/gui.png)
 
@@ -85,4 +87,3 @@ A GUI should appear that looks like this.
 # Example Files
 
 There two Maya files in the **examples** folder which give you an idea of the before and after results. The **test_done.ma** file is a warts and all result of the tool, I've not done any tweaking to the skinning. Looking at the **test_start.ma** is a quite useful illustration of some of the points I've made in the previous section.
-
