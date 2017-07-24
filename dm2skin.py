@@ -5,11 +5,14 @@ from scipy.optimize import minimize
 import maya.cmds as cmds
 import maya.mel as mel
 import math
-from PySide2 import QtCore
-from PySide2 import QtWidgets
+
+from Qt import QtCore, QtWidgets
 from maya import OpenMayaUI as omui
 
-from shiboken2 import wrapInstance
+if cmds.about(v = True).split('-')[0] < 2017:
+    from shiboken2 import wrapInstance
+else:
+    from shiboken import wrapInstance
 
 
 mayaMainWindowPtr = omui.MQtUtil.mainWindow()
