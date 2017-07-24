@@ -31,7 +31,7 @@ So ultimately you should have these new directories.
 
 > C:\\Program Files\\Autodesk\\Maya2016\\Python\\Lib\\site-packages\\scipy
 
-From the root folder copy **dm2skin.py** to your Maya scripts folder. Usually this.
+From the dependencies folder copy **Qt.py** to your Maya scripts folder and from the root copy **dm2skin.py** to the same. Usually your script folder is something like this.
 
 > C:\\Users\\\<User\>\\Documents\\maya\\2016\\scripts
 
