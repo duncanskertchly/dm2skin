@@ -10,9 +10,9 @@ from Qt import QtCore, QtWidgets
 from maya import OpenMayaUI as omui
 
 if cmds.about(v = True).split('-')[0] < 2017:
-    from shiboken2 import wrapInstance
-else:
     from shiboken import wrapInstance
+else:
+    from shiboken2 import wrapInstance
 
 
 mayaMainWindowPtr = omui.MQtUtil.mainWindow()
