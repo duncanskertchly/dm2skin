@@ -9,7 +9,7 @@ import math
 from Qt import QtCore, QtWidgets
 from maya import OpenMayaUI as omui
 
-if cmds.about(v = True).split('-')[0] < 2017:
+if int(cmds.about(v = True)) < 2017:
     from shiboken import wrapInstance
 else:
     from shiboken2 import wrapInstance
